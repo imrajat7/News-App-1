@@ -13,16 +13,18 @@ import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
 
+    News currentNews;
+
     public NewsAdapter(Context context, List<News> news) {
         super(context, 0, news);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null)
+        if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.news_list_item, parent, false);
 
-        News currentNews = getItem(position);
+        currentNews = getItem(position);
 
         //Find the view with id news_title
         TextView titleview = convertView.findViewById(R.id.news_title);
@@ -39,34 +41,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
         //displays the action in the above view.
         sectionview.setText(currentNews.getSection());
 
-        //create a new date object
-        Date dateObject = new Date(currentNews.getDdate());
-
         //Find the view with the id news_date
         TextView dateview = convertView.findViewById(R.id.news_date);
-        //Formats the date
-        String formattedDate = formatDate(dateObject);
-        formattedDate += " " + formatTime(dateObject);
-        //shows date int the above view
-        dateview.setText(formattedDate);
+
+        dateview.setText(currentNews.getDdate());
 
         return convertView;
 
     }
 
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
-    private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
-        return dateFormat.format(dateObject);
-    }
-
-    /**
-     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
-     */
-    private String formatTime(Date dateObject) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-        return timeFormat.format(dateObject);
-    }
 }

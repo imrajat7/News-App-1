@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/default_padding">
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/grey_card"
+        app:cardCornerRadius="@dimen/default_padding">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
-                android:textSize="@dimen/text_22sp"
-                android:textStyle="bold"
-                android:padding="@dimen/dimen_4dp"
                 android:id="@+id/news_title"
-                tools:text="Title of the news"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textSize="@dimen/text_16sp"
-                android:padding="@dimen/dimen_4dp"
-                android:id="@+id/news_author"
-                tools:text="Author of news"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textSize="@dimen/text_16sp"
-                android:padding="@dimen/dimen_4dp"
-                android:id="@+id/news_section"
-                tools:text="news section"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
+                style="@style/headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dimen_4dp"
+                android:layout_margin="@dimen/dimen_4dp"
+                android:textSize="@dimen/text_22sp"
+                android:textStyle="bold"
+                tools:text="Title of the news" />
+
+            <TextView
+                android:id="@+id/news_author"
+                style="@style/author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_4dp"
+                android:textSize="@dimen/text_16sp"
+                tools:text="Author of news" />
+
+            <TextView
+                android:id="@+id/news_section"
+                style="@style/author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_4dp"
+                android:textSize="@dimen/text_16sp"
+                tools:text="news section" />
+
+            <TextView
                 android:id="@+id/news_date"
-                tools:text="13 Oct 2018"/>
+                style="@style/author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_4dp"
+                tools:text="13 Oct 2018" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

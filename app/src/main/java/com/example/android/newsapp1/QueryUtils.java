@@ -20,10 +20,12 @@ import java.util.List;
 
 public class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
-    public QueryUtils(){
+    public QueryUtils() {
 
     }
 
@@ -133,31 +135,38 @@ public class QueryUtils {
 
             JSONArray properties = jsonResults.getJSONArray("results");
 
+
             for (int i = 0; i < properties.length(); i++) {
 
 
-                JSONObject currentEarthquake = properties.getJSONObject(i);
+                JSONObject currentNews = properties.getJSONObject(i);
 
                 // Extract the value for the key called "webTitle"
-                String title = currentEarthquake.getString("webTitle");
+                String title = currentNews.getString("webTitle");
 
-                // Extract the value for the key called "type"
-                String author = currentEarthquake.getString("type");
+                JSONArray tagsArray = currentNews.getJSONArray("tags");
+                
+                String author = null;
 
-                // Extract the value for the key called "sectionName"
-                String section = currentEarthquake.getString("sectionName");
+                if (tagsArray.length() == 0) {
+                    author = null;
+                } else {
+                    for (int j = 0; j < tagsArray.length(); j++) {
+                        JSONObject firstObject = tagsArray.getJSONObject(j);
+                        author = firstObject.getString("webTitle");
+                    }
+                }
 
-                // Extract the value for the key called "webPublicationDate"
-                String date = currentEarthquake.getString("webPublicationDate");
+                String section = currentNews.getString("sectionName");
 
-                // Extract the value of the key called "webUrl"
-                String url = currentEarthquake.getString("webUrl");
+                String date = currentNews.getString("webPublicationDate");
 
-                // Create a new {@link News} object with the title, author, section, date
-                // and url from the JSON response.
-                News neWs = new News(title,author,section,date,url);
+                String url = currentNews.getString("webUrl");
 
-                // Add the new {@link Earthquake} to the list of earthquakes.
+
+                News neWs = new News(title, author, section, date, url);
+
+
                 news.add(neWs);
             }
 
@@ -166,7 +175,7 @@ public class QueryUtils {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
-        // Return the list of earthquakes
+        // Return the list of news
         return news;
     }
 }

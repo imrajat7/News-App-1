@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">News App 1</string>
+    <string name="error_message">Currently there are no stories for you. Please come back later and try again.</string>
 </resources>
